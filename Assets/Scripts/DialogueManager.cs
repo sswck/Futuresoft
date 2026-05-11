@@ -15,7 +15,9 @@ public class DialogueManager : MonoBehaviour
     public float typingSpeed = 0.05f;
 
     private Coroutine typingCoroutine;
-
+    private string currentSentence;
+    private bool isTyping = false;
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -27,7 +29,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartDialogue("Hi! This is a sample dialogue. Press Space to see this text appear with a typing effect.");
+            if (isTyping)
+            {
+                SkipTyping();
+            }
+            else
+            {
+                StartDialogue("Hi! This is a sample dialogue. Press Space to see this text appear with a typing effect.");
+            }
         }
     }
 
@@ -37,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(string sentence)
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        currentSentence = sentence;
         typingCoroutine = StartCoroutine(TypeSentence(sentence));
     }
 
@@ -45,11 +55,25 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private IEnumerator TypeSentence(string sentence)
     {
+        isTyping = true;
         dialogueText.text = "";
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        
+        isTyping = false;
+    }
+
+    /// <summary>
+    /// 진행 중인 타이핑을 멈추고 즉시 전체 문장을 보여주는 함수
+    /// </summary>
+    private void SkipTyping()
+    {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        dialogueText.text = currentSentence;
+        isTyping = false;
     }
 }

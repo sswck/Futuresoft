@@ -1,19 +1,34 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class DialogueData
+{
+    public int id;
+    public string speaker;
+    public string sentence;
+}
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
     [Header("UI 연결")]
-    [Tooltip("텍스트가 출력될 TextMeshPro 컴포넌트")]
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI speakerText;
+
+    [Header("데이터 연결")]
+    public TextAsset dialogueCSV;
 
     [Header("타이핑 설정")]
-    [Tooltip("글자가 하나씩 출력되는 속도 (초)")]
     public float typingSpeed = 0.05f;
 
+    public List<DialogueData> dialogueList = new List<DialogueData>();
+
+    private int currentDialogueIndex = 0;
     private Coroutine typingCoroutine;
     private string currentSentence;
     private bool isTyping = false;
@@ -22,6 +37,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        LoadDialogueDataFromCSV();
     }
 
     // Update is called once per frame
@@ -35,9 +56,60 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                StartDialogue("Hi! This is a sample dialogue. Press Space to see this text appear with a typing effect.");
+                PlayNextDialogue();
             }
         }
+    }
+
+    /// <summary>
+    /// 데이터 로드 (CSV 파싱) 함수
+    /// </summary>
+    public void LoadDialogueDataFromCSV()
+    {
+        if (dialogueCSV == null)
+        {
+            Debug.LogError("CSV 파일이 연결되지 않았습니다!");
+            return;
+        }
+
+        string[] lines = dialogueCSV.text.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+
+            string[] row = lines[i].Split(',');
+
+            DialogueData data = new DialogueData();
+            data.id = int.Parse(row[0]);
+            data.speaker = row[1];
+            data.sentence = row[2].Replace("\r", "");
+
+            dialogueList.Add(data);
+        }
+
+        Debug.Log($"총 {dialogueList.Count}개의 대화를 성공적으로 불러왔습니다!");
+    }
+
+    /// <summary>
+    /// 다음 대화를 출력하는 함수
+    /// </summary>
+    public void PlayNextDialogue()
+    {
+        if (currentDialogueIndex >= dialogueList.Count)
+        {
+            Debug.Log("대화가 모두 끝났습니다!");
+            dialogueText.text = "";
+            if (speakerText != null) speakerText.text = "";
+            return;
+        }
+
+        DialogueData currentData = dialogueList[currentDialogueIndex];
+
+        if (speakerText != null) speakerText.text = currentData.speaker;
+        
+        StartDialogue(currentData.sentence);
+        currentDialogueIndex++;
     }
 
     /// <summary>
@@ -46,6 +118,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(string sentence)
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        
         currentSentence = sentence;
         typingCoroutine = StartCoroutine(TypeSentence(sentence));
     }

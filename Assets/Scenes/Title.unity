@@ -611,54 +611,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &801367301
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 801367303}
-  - component: {fileID: 801367302}
-  m_Layer: 5
-  m_Name: MainHubScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!225 &801367302
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801367301}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!224 &801367303
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801367301}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 947418509}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &947418508
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +643,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1480207282}
-  - {fileID: 801367303}
   - {fileID: 1204651883}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1302,15 +1253,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6443757879229949489, guid: ff102eb52d2220545b97551dc2bb01cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 884.7986
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6443757879229949489, guid: ff102eb52d2220545b97551dc2bb01cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 494.22354
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6443757879229949489, guid: ff102eb52d2220545b97551dc2bb01cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.56681
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6443757879229949489, guid: ff102eb52d2220545b97551dc2bb01cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1371,15 +1322,15 @@ PrefabInstance:
       objectReference: {fileID: 201650912}
     - target: {fileID: 7339462451175426575, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 893.3342
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339462451175426575, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 430.94775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339462451175426575, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0514765
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339462451175426575, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1424,11 +1375,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2288094512575582932, guid: 531beea6ef5cdfd4dbb45c65cc3d5fc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2288094512575582932, guid: 531beea6ef5cdfd4dbb45c65cc3d5fc5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2288094512575582932, guid: 531beea6ef5cdfd4dbb45c65cc3d5fc5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1469,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 7090987124535314790, guid: 531beea6ef5cdfd4dbb45c65cc3d5fc5, type: 3}
       propertyPath: mainHubScreen
       value: 
-      objectReference: {fileID: 801367302}
+      objectReference: {fileID: 0}
     - target: {fileID: 7800965275335189360, guid: 531beea6ef5cdfd4dbb45c65cc3d5fc5, type: 3}
       propertyPath: m_Name
       value: UIManager

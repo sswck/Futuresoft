@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MainHub
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: "\uD654\uC7A5\uB300"
+    uniqueID: 1641217967
+    locked: 0
+  - name: PC
+    uniqueID: 146158253
+    locked: 0
+  - name: "\uBB38"
+    uniqueID: 1010806831
+    locked: 0
+  - name: "\uC11C\uB78D"
+    uniqueID: 1075524597
+    locked: 0
+  - name: "\uD578\uB4DC\uD3F0"
+    uniqueID: 1300337933
+    locked: 0
+  - name: "\uCE68\uB300"
+    uniqueID: 3318416089
+    locked: 0
+  - name: "\uC637\uAC78\uC774"
+    uniqueID: 3564110041
     locked: 0

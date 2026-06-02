@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
-            string[] row = lines[i].Split(',');
+            string[] row = lines[i].Split(',', 3);
 
             DialogueData data = new DialogueData();
             data.id = int.Parse(row[0]);

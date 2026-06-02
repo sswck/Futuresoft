@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
@@ -17,33 +18,26 @@ public class InteractableObject : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (defaultSprite != null)
-        {
-            spriteRenderer.sprite = defaultSprite;
-        }
+        if (defaultSprite != null) spriteRenderer.sprite = defaultSprite;
     }
 
     private void OnMouseEnter()
     {
-        if (hoverSprite != null)
-        {
-            spriteRenderer.sprite = hoverSprite;
-        }
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (hoverSprite != null) spriteRenderer.sprite = hoverSprite;
     }
 
     private void OnMouseExit()
     {
-        if (defaultSprite != null)
-        {
-            spriteRenderer.sprite = defaultSprite;
-        }
+        if (defaultSprite != null) spriteRenderer.sprite = defaultSprite;
     }
 
     private void OnMouseDown()
     {
-        Debug.Log($"{gameObject.name}이(가) 클릭되었습니다.");
+        if (EventSystem.current.IsPointerOverGameObject()) return;
 
+        Debug.Log($"{gameObject.name}이(가) 클릭되었습니다.");
         onClickAction?.Invoke();
     }
 }

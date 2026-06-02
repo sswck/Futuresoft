@@ -164,8 +164,8 @@ MonoBehaviour:
     \uC9C4\uD589\n- \uB300\uD654 \uCD9C\uB825 \uC911 \uC2A4\uD398\uC774\uC2A4\uBC14\uB97C
     \uB20C\uB7EC \uD55C\uBC88\uC5D0 \uCD9C\uB825(\uC2A4\uD0B5\uAE30\uB2A5)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
-  m_sharedMaterial: {fileID: 7109265718665909352, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
+  m_sharedMaterial: {fileID: -9101657292301746483, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -298,8 +298,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBC1C\uD654\uC790"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
-  m_sharedMaterial: {fileID: 7109265718665909352, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
+  m_sharedMaterial: {fileID: -9101657292301746483, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1111,8 +1111,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBA54\uC778\uC73C\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
-  m_sharedMaterial: {fileID: 7109265718665909352, guid: b83c677b6c60f8247a5c69c92edd1594, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
+  m_sharedMaterial: {fileID: -9101657292301746483, guid: 5aa4cf5b7ece1bf4b856059718b26b42, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1312,6 +1312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6179323395978792340, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
+      propertyPath: dialogueCSV
+      value: 
+      objectReference: {fileID: 4900000, guid: d4df6966e59be884f8b35b78b2a6c48c, type: 3}
     - target: {fileID: 6179323395978792340, guid: d0901753913c13b4fae0d5e33e528091, type: 3}
       propertyPath: speakerText
       value: 

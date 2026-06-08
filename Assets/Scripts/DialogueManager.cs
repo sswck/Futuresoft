@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class DialogueData
 {
     public int id;
     public string speaker;
+    public string expression;
     public string sentence;
+}
+
+[System.Serializable]
+public struct CharacterSprite
+{
+    public string expressionName;
+    public Sprite sprite;
 }
 
 public class DialogueManager : MonoBehaviour
@@ -19,15 +27,16 @@ public class DialogueManager : MonoBehaviour
     [Header("UI 연결")]
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI speakerText;
+    public Image characterImage;
 
     [Header("데이터 연결")]
     public TextAsset dialogueCSV;
+    public List<CharacterSprite> characterSprites;
 
     [Header("타이핑 설정")]
     public float typingSpeed = 0.05f;
 
     public List<DialogueData> dialogueList = new List<DialogueData>();
-
     private int currentDialogueIndex = 0;
     private Coroutine typingCoroutine;
     private string currentSentence;
@@ -43,6 +52,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         LoadDialogueDataFromCSV();
+        if (characterImage != null) characterImage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,14 +60,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isTyping)
-            {
-                SkipTyping();
-            }
-            else
-            {
-                PlayNextDialogue();
-            }
+            if (isTyping) SkipTyping();
+            else PlayNextDialogue();
         }
     }
 
@@ -66,11 +70,7 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void LoadDialogueDataFromCSV()
     {
-        if (dialogueCSV == null)
-        {
-            Debug.LogError("CSV 파일이 연결되지 않았습니다!");
-            return;
-        }
+        if (dialogueCSV == null) return;
 
         string[] lines = dialogueCSV.text.Split('\n');
 
@@ -78,12 +78,13 @@ public class DialogueManager : MonoBehaviour
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
-            string[] row = lines[i].Split(',', 3);
+            string[] row = lines[i].Split(',', 4);
 
             DialogueData data = new DialogueData();
             data.id = int.Parse(row[0]);
             data.speaker = row[1];
-            data.sentence = row[2].Replace("\r", "");
+            data.expression = row[2].Replace("\r", "");
+            data.sentence = row[3].Replace("\r", "");
 
             dialogueList.Add(data);
         }
@@ -98,18 +99,42 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogueIndex >= dialogueList.Count)
         {
-            Debug.Log("대화가 모두 끝났습니다!");
             dialogueText.text = "";
             if (speakerText != null) speakerText.text = "";
+            if (characterImage != null) characterImage.gameObject.SetActive(false);
             return;
         }
 
         DialogueData currentData = dialogueList[currentDialogueIndex];
 
         if (speakerText != null) speakerText.text = currentData.speaker;
-        
+
+        UpdateCharacterExpression(currentData.expression);
         StartDialogue(currentData.sentence);
         currentDialogueIndex++;
+    }
+
+    private void UpdateCharacterExpression(string exp)
+    {
+        if (characterImage == null) return;
+
+        if (string.IsNullOrEmpty(exp) || exp.Trim() == "None")
+        {
+            characterImage.gameObject.SetActive(false);
+            return;
+        }
+
+        foreach (var charSprite in characterSprites)
+        {
+            if (charSprite.expressionName == exp.Trim())
+            {
+                characterImage.sprite = charSprite.sprite;
+                characterImage.gameObject.SetActive(true);
+                return;
+            }
+        }
+
+        Debug.LogWarning($"⚠️ '{exp}' 이름과 일치하는 캐릭터 이미지를 찾을 수 없습니다.");
     }
 
     /// <summary>

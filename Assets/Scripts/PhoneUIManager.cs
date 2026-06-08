@@ -15,13 +15,12 @@ public class PhoneUIManager : MonoBehaviour
         phonePopupGroup.alpha = 0f;
         phonePopupGroup.interactable = false;
         phonePopupGroup.blocksRaycasts = false;
-
         phonePopupGroup.transform.localScale = Vector3.one * 0.8f;
         phonePopupGroup.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// 스마트폰 사물을 클릭했을 때 팝업을 여는 함수입니다.
+    /// 스마트폰 오브젝트를 클릭했을 때 팝업을 여는 함수입니다.
     /// </summary>
     public void OpenPhoneMenu()
     {
@@ -46,5 +45,18 @@ public class PhoneUIManager : MonoBehaviour
         {
             phonePopupGroup.gameObject.SetActive(false);
         });
+    }
+
+    public void OnClickPartTime()
+    {
+        Debug.Log("알바시작: 추후 알바 진행 예정입니다.");
+        // (임시) 버튼을 누르면 팝업이 자동으로 닫히게 설정
+        ClosePhoneMenu(); 
+    }
+
+    public void OnClickMarket()
+    {
+        Debug.Log("중고거래시작: 추후 남주인공과의 만남 스토리 씬으로 이동할 예정입니다.");
+        ClosePhoneMenu();
     }
 }
